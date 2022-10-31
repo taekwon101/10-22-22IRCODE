@@ -1,0 +1,15 @@
+list_of_means = []
+
+for column in df:
+    sample_mean = df[column][500:600].mean()
+    list_of_means.append(sample_mean)
+
+x = 0
+
+for mean in list_of_means:
+    x = x + 1
+    if x % 5 = 0:
+        find mean of those 5 means
+        add that to a list
+        find the std dev of those 5 means
+        add that to a list

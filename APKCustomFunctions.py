@@ -30,13 +30,14 @@ def Normalize(abs_raw, WN_normal):
     return abs_normalized
 
 
-def CSVsToDataframe(CSVList, normalization_index):
+def CSVsToDataframe(CSVList, normalization_index, averaging_range_low, averaging_range_high):
     '''Takes list of CSVs and the index of the normalization absorbance and reads them into a Pandas Dataframe'''
     
     # INITIALIZE FILES AND VARIABLES #
     columnname = CSVList[0][0:-4]
     df_IR = pd.read_csv(CSVList[0], skiprows = 2, header = None, names = ['cm-1', columnname], index_col = ['cm-1'])
     df_IR = df_IR.sort_values(by = ['cm-1'], ignore_index = True)
+    average_array = []
 
     # LOOP THROUGH CSVs ADDING EACH TO DATAFRAME #
     for CSV in CSVList:
@@ -45,6 +46,7 @@ def CSVsToDataframe(CSVList, normalization_index):
         df_add = df_add.sort_values(by=['cm-1'], ignore_index = True)
         IR_array = df_add[columnname].to_numpy()
         abs_array = ConvertTransToAbs(IR_array)
+        average_array.append(abs_array[averaging_range_low:averaging_range_high].mean())
         df_IR[columnname] = Normalize(abs_array, df_add[columnname][normalization_index])
 
-    return df_IR
+    return df_IR, average_array
