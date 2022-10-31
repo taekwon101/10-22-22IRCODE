@@ -1,9 +1,14 @@
-from matplotlib.image import pil_to_array
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import APKCustomFunctions as apk
 
-file = r'D:\221026_IR\10-26_uncuredx1000dilution_1.csv'
+folderpath = r'CSVs\test1'
+normalization_index = 2078
+
+filelist = apk.FileSort(folderpath)
+
+file1 = r'D:\221026_IR\10-26_uncuredx1000dilution_1.csv'
 file2 = r'D:\221026_IR\10-26_uncuredx1000dilution_2.csv'
 file3 = r'D:\221026_IR\10-26_uncuredx1000dilution_3.csv'
 file4 = r'D:\221026_IR\10-26_uncuredx1000dilution_4.csv'
@@ -18,7 +23,6 @@ file12 = r'D:\221026_IR\10-26_13Amps4secx1000dilution_2.csv'
 file13 = r'D:\221026_IR\10-26_13Amps4secx1000dilution_3.csv'
 file14 = r'D:\221026_IR\10-26_13Amps4secx1000dilution_4.csv'
 file15 = r'D:\221026_IR\10-26_13Amps4secx1000dilution_5.csv'
-
 file16 = r'D:\221026_IR\10-26_13Amps6secx1000dilution_1.csv'
 file17 = r'D:\221026_IR\10-26_13Amps6secx1000dilution_2.csv'
 file18 = r'D:\221026_IR\10-26_13Amps6secx1000dilution_3.csv'
@@ -30,7 +34,7 @@ file23 = r'D:\221026_IR\10-26_curedx1000dilution_3.csv'
 file24 = r'D:\221026_IR\10-26_curedx1000dilution_4.csv'
 file25 = r'D:\221026_IR\10-26_curedx1000dilution_5.csv'
 
-df = pd.read_csv(file, skiprows = 1)
+df = pd.read_csv(file1, skiprows = 1)
 df2 = pd.read_csv(file2, skiprows = 1)
 df3 = pd.read_csv(file3, skiprows = 1)
 df4 = pd.read_csv(file4, skiprows = 1)
